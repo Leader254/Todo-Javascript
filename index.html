@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="frontend mentor, todo list, todo app">
+  <meta name="title" content="Frontend Mentor | Aneta Krajcovicova">
+  <meta name="description" content="The classic todo app with a dark/light theme toggle and drag & drop reordering.">
+  <meta name="author" content="Aneta Krajcovicova">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Todo app</title>
+
+  <script>
+    // CHECK LOCAL STORAGE
+    let localS = localStorage.getItem('theme'),
+      themeToSet = localS
+
+    // IF LOCAL STORAGE IS NOT SET WE CHECK THE OS PREFERENCE
+    if (!localS) {
+      themeToSet = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+    // SET THE CORRECT THEME
+    document.documentElement.setAttribute('data-theme', themeToSet)
+  </script>
+
+  <!-- GOOGLE FONTS LINK -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- SORTABLE.JS LINK -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"
+    integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+
+<body>
+
+  <header class="header">
+    <div class="wrapper">
+      <section class="header-top">
+        <h1>TODO</h1>
+        <button type="button" title="theme" class="themeSwitcher">
+          <img src="./images/icon-sun.svg" class="sunIcon" alt="Theme icon">
+        </button>
+      </section>
+
+      <form action="#" id="todo-form">
+        <div>
+          <span class="form-button"></span>
+          <input title="task" type="text" class="form-input" name="task-name" id="form-input"
+            placeholder="Create a new todo...">
+        </div>
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrapper">
+      <ul class="todos">
+      </ul>
+
+      <div class="stats-place">
+        <div class="left-items">
+          <span>items left</span>
+          <span class="remaining-tasks"></span>
+        </div>
+        <span class="clearCompleted">Clear completed</span>
+      </div>
+
+      <div id="controls">
+        <div class="filters">
+          <button type="button" class="active" id="all">All</button>
+          <button type="button" id="remain">Active</button>
+          <button type="button" id="completed">Completed</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="drag">
+    <p>Drag and drop to reorder list</p>
+  </footer>
+</body>
+
+</html>
